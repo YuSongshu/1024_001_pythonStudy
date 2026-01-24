@@ -1,0 +1,4 @@
+简单的下载视频，但url会变而被反爬，故要实时更改url
+
+以视频“https://www.bilibili.com/video/BV1jwSNBcETT/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=b76a56185762fcec370e4ef5e0ee9587”为例进行下载
+
