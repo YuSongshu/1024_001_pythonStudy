@@ -175,6 +175,64 @@ page.wait_for_timeout(1000)
 
 
 
+## 下载图片
+
 playwright 如何下载图片呢？ 
 
-响应监听：page.on('response', 回调函数)
+### 响应监听
+
+监听要放在访问之前
+
+```
+page.on('response', 回调函数)
+```
+
+demo
+
+```
+import time
+from playwright.sync_api import sync_playwright
+
+def download_print(response):
+	print(f"响应的url：{response.url}")
+with sync_playwright() as pw:
+    browser = pw.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    
+    # 监听事件：响应
+    page.on('response', download_print)
+
+    page.goto('https://www.baidu.com')
+
+    time.sleep(3)
+```
+
+
+
+通过判断过滤掉自己不需要的响应【响应对象】，url ，headers
+
+若要下载图片可以通过 Content_type的image/jpeg类型来筛选，下载通过 open 写入响应体作为图片
+
+```
+content_type = response.headers.get('content-type')
+if content_type and 'image' in content_type:    #有些响应没有content_type会报错，故加它判定content_type是否存在
+	with open("a.png", "wb") as f:
+		# 响应体
+		f.write(response.body())
+```
+
+批量获取图片名称
+
+```
+filename = response.url.split('/')[-1]
+```
+
+注
+
+```
+with open("images/" + filename, "wb") as f:
+```
+
+表示图片存在当前目录的images文件夹里（images要提前创建好）
+
