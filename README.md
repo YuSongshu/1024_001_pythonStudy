@@ -75,17 +75,16 @@ pip install matplotlib
 pip install pyecharts
 ```
 
----
 
-## 环境建议
 
-| 工具 | 用途 |
+## 环境
+
+环境是我学习时的环境，可以根据自己的需求变更
+
+| 环境 | 用途 |
 |------|------|
 | Python 3.10 / 3.11 | 爬虫与数据分析（避开 ddddocr 版本限制） |
 | Node.js 18+ | JS 逆向、jsdom、crypto-js |
-| MongoDB | 爬虫入库（pymongo） |
-| Redis | Scrapy-Redis 分布式爬虫 |
-| FFmpeg | 音视频处理（ffmpeg-python） |
 
 
 
